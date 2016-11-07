@@ -101,7 +101,7 @@ function main() {
 }
 
 function GetAssetPrices(callback) {
-    $.getJSON('https://jsonp.afeld.me/?url=https://api.steampowered.com/ISteamEconomy/GetAssetPrices/v1/?key=' + api_key + '&format=json&appid=730', function (rawPrices) {
+    $.getJSON('https://jsonp.afeld.me/?url=https%3A%2F%2Fapi.steampowered.com%2FISteamEconomy%2FGetAssetPrices%2Fv1%2F%3Fkey%3D824367C3B8AA3C7EADD70FF8A0DB3516%26format%3Djson%26appid%3D730', function (rawPrices) {
         if (rawPrices.result.success) {
             callback(false, rawPrices);
         } else {
