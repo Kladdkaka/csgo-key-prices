@@ -101,7 +101,7 @@ function main() {
 }
 
 function GetAssetPrices(callback) {
-    $.getJSON('http://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamEconomy/GetAssetPrices/v1/?key=824367C3B8AA3C7EADD70FF8A0DB3516&format=json&appid=730', function (rawPrices) {
+    $.getJSON('https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamEconomy/GetAssetPrices/v1/?key=824367C3B8AA3C7EADD70FF8A0DB3516&format=json&appid=730', function (rawPrices) {
         if (rawPrices.result.success) {
             callback(false, rawPrices);
         } else {
