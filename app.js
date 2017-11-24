@@ -14,17 +14,18 @@ const api_key = '824367C3B8AA3C7EADD70FF8A0DB3516'; // stolen from SIH :^)
 
 var keyPrices = [];
 
-var yql = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22USDGBP%22%2C%20%22USDEUR%22%2C%20%22USDRUB%22%2C%20%22USDBRL%22%2C%20%22USDJPY%22%2C%20%22USDNOK%22%2C%20%22USDIDR%22%2C%20%22USDMYR%22%2C%20%22USDPHP%22%2C%20%22USDSGD%22%2C%20%22USDTHB%22%2C%20%22USDVND%22%2C%20%22USDKRW%22%2C%20%22USDTRY%22%2C%20%22USDUAH%22%2C%20%22USDMXN%22%2C%20%22USDCAD%22%2C%20%22USDAUD%22%2C%20%22USDNZD%22%2C%20%22USDPLN%22%2C%20%22USDCHF%22%2C%20%22USDAED%22%2C%20%22USDCLP%22%2C%20%22USDCNY%22%2C%20%22USDCOP%22%2C%20%22USDPEN%22%2C%20%22USDSAR%22%2C%20%22USDTWD%22%2C%20%22USDHKD%22%2C%20%22USDZAR%22%2C%20%22USDINR%22)&format=json&env=store://datatables.org/alltableswithkeys&callback=";
-$.getJSON(yql, function (data) {
-    var rates = data.query.results.rate;
+var url = "https://api.fixer.io/latest?base=USD";
+
+$.getJSON(url, function (data) {
+    var rates = data.rates;
     var moneyJsRates = {};
     moneyJsRates["USD"] = 1;
-
-    $.each(rates, function (index, rate) {
-        var code = rate.id.split('USD')[1];
-        var rate = parseFloat(rate.Rate);
+    
+    Object.keys(rates).forEach(code => {
+        const rate = rates[code]
         moneyJsRates[code] = rate;
     });
+    
     console.log(moneyJsRates);
 
     // Check money.js has finished loading:
